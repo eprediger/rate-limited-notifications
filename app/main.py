@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from app.adapters.http.notification_rules import notification_rules_controller
+from app.adapters.http.notifications import notifications_controller
 from app.adapters.persistence.database import engine
 from app.adapters.persistence.notification_rules import model
 
@@ -11,3 +12,4 @@ app = FastAPI(
 )
 
 app.include_router(notification_rules_controller.router)
+app.include_router(notifications_controller.router)

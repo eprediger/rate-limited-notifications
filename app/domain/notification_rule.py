@@ -9,6 +9,7 @@ class NotificationRuleBase(BaseModel):
     amount: PositiveInt
     period: Period
 
+
 class NotificationRule(NotificationRuleBase):
     id: int
 

@@ -18,3 +18,13 @@ class Period(StrEnum):
     HOURS = auto()
     DAYS = auto()
     WEEKS = auto()
+
+    @staticmethod
+    def to_seconds(period: str):
+        return {
+            Period.SECONDS: 1,
+            Period.MINUTES: 60,
+            Period.HOURS: 60 * 60,
+            Period.DAYS: 60 * 60 * 24,
+            Period.WEEKS: 60 * 60 * 24 * 7
+        }[period]
