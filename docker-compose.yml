@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/code
     environment:
-      - DATABASE_URL=postgresql:rt_user:rt_pass@dev_db:5432/rt_db
+      - DATABASE_URL=postgresql://rt_user:rt_pass@dev_db:5432/rt_db
     ports:
       - "8000:8000"
     depends_on:
