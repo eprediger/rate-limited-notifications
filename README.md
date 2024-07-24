@@ -73,3 +73,21 @@ class Gateway {
     }
 }
 ```
+
+## Development
+
+Image build and containers (app && database) execution: `$ docker-compose up -d --build`
+
+Stop container with: `$ docker-compose stop`
+
+Re-start container: `$ docker-compose start`
+
+Delete containers: `$ docker-compose down`
+
+## Tests execution
+
+Enter container: `$ docker-compose exec app bash`
+
+Run e2e tests with `behave`: `$ behave`
+
+Run tests with `coverage`: `$ coverage run -a -m behave && coverage report -m`

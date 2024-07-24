@@ -15,7 +15,6 @@ def create_notification_rule(db: Session, rule: NotificationRuleBase) -> Notific
     db_notification_rule = model.NotificationRule(
         type=rule.type,
         max_per_user=rule.max_per_user,
-        amount=rule.amount,
         period=rule.period
     )
     db.add(db_notification_rule)

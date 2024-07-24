@@ -6,7 +6,6 @@ from app.domain.period import Period
 class NotificationRuleBase(BaseModel):
     type: constr(min_length=1)
     max_per_user: PositiveInt
-    amount: PositiveInt
     period: Period
 
 

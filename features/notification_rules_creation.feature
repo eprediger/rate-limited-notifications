@@ -6,11 +6,10 @@ Feature: Notification Rule Creation
   Scenario: New notification
     Given the type is "Status"
     And the maximum number of emails is "2"
-    And the time frame is "1" "minutes"
+    And the time period is "minutes"
     When I create the notification
     Then I get the notification created successfully
 
-  @wip
   Scenario Outline: Invalid notification
     Given a new notification where the key "<key_name>" has value "<value>"
     When I create the notification
@@ -20,5 +19,4 @@ Feature: Notification Rule Creation
       | key_name     | value   |
       | type         | -       |
       | max_per_user | 0       |
-#      | amount       | 0       |
-#      | period       | decades |
+      | period       | decades |

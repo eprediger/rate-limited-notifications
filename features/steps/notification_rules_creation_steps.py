@@ -6,10 +6,7 @@ def create_notification(replacement: dict):
     example_course = {
         "type": "Status",
         "max_per_user": 1,
-        "time_frame": {
-            "amount": 1,
-            "period": "MINUTES"
-        }
+        "period": "MINUTES"
     }
 
     example_course.update(replacement)
@@ -27,13 +24,9 @@ def step_impl(context, max_per_user):
     context.vars["new_notification"]["max_per_user"] = max_per_user
 
 
-@given('the time frame is "{amount:d}" "{period}"')
-def step_impl(context, amount, period):
-    context.vars["new_notification"]["time_frame"] = {
-        "amount": amount,
-        "period": period.upper()
-    }
-    print(context.vars["new_notification"])
+@given('the time period is "{period}"')
+def step_impl(context, period):
+    context.vars["new_notification"]["period"] = period.upper()
 
 
 @when("I create the notification")
