@@ -15,8 +15,7 @@ def create_notification_rule(replacement: dict = {}):
 
 @given('the type is "{type}"')
 def step_impl(context, type):
-    context.vars["new_notification_rule"] = {}
-    context.vars["new_notification_rule"]["type"] = type
+    context.vars["new_notification_rule"] = create_notification_rule({"type": type})
 
 
 @given('the maximum number of emails is "{max_per_user:d}"')

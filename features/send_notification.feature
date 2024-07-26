@@ -4,8 +4,11 @@ Feature: Send notification
   So they are up to date with the notifications
 
   Background:
-    Given a notification rule with type "Status"
+    Given a rule with type "Status"
+    And the maximum number of emails is "1"
+    And this notification rule exists
 
+  @wip
   Scenario: Successful notification
     Given the type "Status"
     And the user with id "jdoe"

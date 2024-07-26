@@ -3,7 +3,7 @@ Feature: Notification Rule Creation
   I want to create notification rules
   So that I can limit the amount of emails sent
 
-  Scenario: New notification
+  Scenario: New notification rule
     Given the type is "Status"
     And the maximum number of emails is "2"
     And the time period is "minutes"

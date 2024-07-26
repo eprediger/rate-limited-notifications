@@ -1,15 +1,15 @@
 from behave import given, when, then
 
-from notification_rules_creation_steps import create_notification_rule
+
+@given(u'a rule with type "{rule_type}"')
+def step_impl(context, rule_type):
+    context.execute_steps(f'Given the type is "{rule_type}"')
 
 
-@given('a notification rule with type "{notification_type}"')
-def step_impl(context, notification_type):
-    notification_rule = create_notification_rule({"type": notification_type})
-    context.response = context.client.post(
-        "/notification-rules",
-        json=notification_rule
-    )
+@given(u'this notification rule exists')
+def step_impl(context):
+    context.execute_steps("When I create the notification")
+
 
 @given(u'the type "{notification_type}"')
 def step_impl(context, notification_type):
