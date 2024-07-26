@@ -2,7 +2,7 @@ from behave import given, when, then, use_step_matcher
 
 use_step_matcher("cfparse")
 
-def create_notification(replacement: dict):
+def create_notification(replacement: dict = {}):
     example_course = {
         "type": "Status",
         "max_per_user": 1,
