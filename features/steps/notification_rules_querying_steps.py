@@ -1,12 +1,12 @@
 from behave import given, when, then, use_step_matcher
 
-from steps.notification_rules_creation_steps import create_notification
+from steps.notification_rules_creation_steps import create_notification_rule
 
 use_step_matcher("cfparse")
 
 @given("that a notification rule exists")
 def step_impl(context):
-    new_notification = create_notification()
+    new_notification = create_notification_rule()
     context.response = context.client.post(
         "/notification-rules",
         json=new_notification

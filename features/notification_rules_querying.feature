@@ -3,7 +3,6 @@ Feature: Notification Rule Querying
   I want to query the notification rules
   So I can check the existent rules
 
-  @wip
   Scenario: Querying all notification rules
     Given that a notification rule exists
     When I query the notification rules

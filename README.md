@@ -90,6 +90,8 @@ Enter container: `$ docker-compose exec app bash`
 
 Run e2e tests with `behave`: `$ behave`
 
+Run `unittest`: `$ python -m unittest`
+
 Run tests with `coverage`: `$ coverage run -m unittest && coverage run -a -m behave && coverage report -m`
 
 Generate HTML coverage report: `$ coverage html`
