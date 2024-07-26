@@ -1,7 +1,9 @@
+from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import Session
 
 from app.adapters.persistence.notification_rules import model
 from app.domain.notification_rule import NotificationRule, NotificationRuleBase
+from app.domain.notification_not_found_error import NotificationNotFoundError
 
 
 def get_notification_rules(db: Session, skip: int = 0, limit: int = 10):
@@ -25,6 +27,11 @@ def create_notification_rule(db: Session, rule: NotificationRuleBase) -> Notific
 
 
 def get_notification_rule_by_type(db: Session, rule_type: str) -> NotificationRule:
-    return db.query(model.NotificationRule) \
-        .filter(model.NotificationRule.type == rule_type) \
-        .first()
+    try:
+        notification = db.query(model.NotificationRule) \
+            .filter(model.NotificationRule.type == rule_type) \
+            .one()
+    except NoResultFound:
+        raise NotificationNotFoundError(rule_type)
+
+    return notification

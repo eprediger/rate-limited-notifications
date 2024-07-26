@@ -20,3 +20,8 @@ Feature: Send notification
     Given it has a prior notification sent
     When I send the notification
     Then I get an erroneous response for exceeding the rate limit
+
+  Scenario: Send notification with a non-existent type
+    Given the type "non-existent"
+    When I send the notification
+    Then I get and erroneous response for a non-existent type

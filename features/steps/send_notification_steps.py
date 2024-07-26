@@ -43,6 +43,7 @@ def step_impl(context):
 def step_impl(context):
     pass
 
+
 @given(u'it has a prior notification sent')
 def step_impl(context):
     context.execute_steps('When I send the notification')
@@ -56,3 +57,8 @@ def step_impl(context):
 @then(u'I get an erroneous response for exceeding the rate limit')
 def step_impl(context):
     assert context.response.status_code == 429
+
+
+@then(u'I get and erroneous response for a non-existent type')
+def step_impl(context):
+    assert context.response.status_code == 400

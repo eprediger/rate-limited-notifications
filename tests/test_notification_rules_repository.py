@@ -4,6 +4,7 @@ from app.adapters.persistence.database import Base, engine, SessionLocal
 from app.adapters.persistence.notification_rules.repository import get_notification_rule_by_type, \
     create_notification_rule
 from app.domain.notification_rule import NotificationRuleBase
+from app.domain.notification_not_found_error import NotificationNotFoundError
 
 
 class NotificationRulesRepositoryTest(unittest.TestCase):
@@ -28,6 +29,9 @@ class NotificationRulesRepositoryTest(unittest.TestCase):
         self.assertEqual(notification_rule.max_per_user, 4)
         self.assertEqual(notification_rule.period, "WEEKS")
 
+    def test_should_raise_if_type_does_not_exist(self):
+        with self.assertRaises(NotificationNotFoundError):
+            get_notification_rule_by_type(self.session, "INVALID_PERIOD")
 
 if __name__ == '__main__':
     unittest.main()
