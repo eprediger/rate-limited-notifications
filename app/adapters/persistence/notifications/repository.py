@@ -1,13 +1,14 @@
 from datetime import datetime
+from typing import List, Type
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
 
 from app.adapters.persistence.notification_rules import model
-from app.domain.notification import NotificationCreate
+from app.domain.notification import NotificationCreate, Notification
 
 
-def get_notifications(db: Session, user: str, notification_type: str, date_from: datetime):
+def get_notifications(db: Session, user: str, notification_type: str, date_from: datetime) -> List[Type[Notification]]:
     return db.query(model.Notification).filter(
         and_(model.Notification.user_id == user,
              model.Notification.type == notification_type,

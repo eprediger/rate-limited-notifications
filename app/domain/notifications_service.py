@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, UTC
 
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -21,7 +21,7 @@ class NotificationsService:
         notification_rule = get_notification_rule_by_type(self.db, notification.type)
 
         period = notification_rule.period
-        date_from = datetime.utcnow() - timedelta(seconds=Period.to_seconds(period))
+        date_from = datetime.now(UTC) - Period.to_seconds(period)
 
         sent_notifications_to_user = repository.get_notifications(
             db=self.db,

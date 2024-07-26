@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Enum
 from sqlalchemy.sql import func
 
 from app.adapters.persistence.database import Base
+from app.domain.period import Period
 
 
 class NotificationRule(Base):
@@ -10,7 +11,7 @@ class NotificationRule(Base):
     id = Column(Integer, primary_key=True)
     type = Column(String, nullable=False, unique=True, index=True)
     max_per_user = Column(Integer, nullable=False)
-    period = Column(String, nullable=False)
+    period = Column(Enum(Period), nullable=False)
 
 class Notification(Base):
     __tablename__ = "notifications"

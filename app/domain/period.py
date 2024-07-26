@@ -1,3 +1,4 @@
+from datetime import timedelta
 from enum import Enum, auto
 
 
@@ -19,12 +20,13 @@ class Period(StrEnum):
     DAYS = auto()
     WEEKS = auto()
 
-    @staticmethod
-    def to_seconds(period: str):
-        return {
+    def to_seconds(self) -> timedelta:
+        seconds = {
             Period.SECONDS: 1,
             Period.MINUTES: 60,
             Period.HOURS: 60 * 60,
             Period.DAYS: 60 * 60 * 24,
             Period.WEEKS: 60 * 60 * 24 * 7
-        }[period]
+        }[self]
+
+        return timedelta(seconds=seconds)
