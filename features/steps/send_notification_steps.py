@@ -39,11 +39,20 @@ def step_impl(context):
     )
 
 
-@when(u'it doesn\'t have any previous notification sent in rule period')
+@when(u'it has no prior notification sent within the rule period')
 def step_impl(context):
     pass
+
+@given(u'it has a prior notification sent')
+def step_impl(context):
+    context.execute_steps('When I send the notification')
 
 
 @then(u'I get a successful response with the sent notification')
 def step_impl(context):
     assert context.response.status_code == 201
+
+
+@then(u'I get an erroneous response for exceeding the rate limit')
+def step_impl(context):
+    assert context.response.status_code == 429
