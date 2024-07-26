@@ -2,8 +2,6 @@ from datetime import datetime, timedelta
 
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from starlette import status
-from starlette.responses import Response
 
 from app.adapters.io.gateway import Gateway, get_gateway
 from app.adapters.persistence.database import get_db
@@ -11,6 +9,7 @@ from app.adapters.persistence.notification_rules.repository import get_notificat
 from app.adapters.persistence.notifications import repository
 from app.domain.notification import NotificationCreate
 from app.domain.period import Period
+from app.domain.rate_limit_exceeded_error import RateLimitExceededError
 
 
 class NotificationsService:
@@ -32,7 +31,7 @@ class NotificationsService:
         )
 
         if len(sent_notifications_to_user) >= notification_rule.max_per_user:
-            return Response(status_code=status.HTTP_429_TOO_MANY_REQUESTS)
+            raise RateLimitExceededError()
 
         self.gateway.send(notification)
 
